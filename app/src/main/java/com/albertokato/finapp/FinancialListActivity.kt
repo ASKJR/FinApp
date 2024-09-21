@@ -1,5 +1,6 @@
 package com.albertokato.finapp
 
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -19,9 +20,12 @@ class FinancialListActivity : AppCompatActivity() {
             insets
         }
         val listView = findViewById<ListView>(R.id.listView)
-        val financialEntries = intent.getSerializableExtra("financialEntries") as? ArrayList<FinancialEntry>
-        //how to make type green or red depending on the type
-
+        val bundle = intent.extras
+        val financialEntries =  if (Build.VERSION.SDK_INT  >= Build.VERSION_CODES.TIRAMISU) {
+            bundle?.getParcelableArrayList("financialEntries", FinancialEntry::class.java)
+        } else {
+            bundle?.getParcelableArrayList("financialEntries")
+        }
         val financialEntriesString = financialEntries?.map { "${it.type} - ${it.description} - R$${String.format("%.2f", it.value)}" }?.toTypedArray()
         if (financialEntriesString != null) {
             val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, financialEntriesString)
