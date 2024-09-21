@@ -27,7 +27,6 @@
         android:layout_marginTop="220dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Higfhfh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +50,6 @@
         android:layout_marginTop="284dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:text="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.584"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,9 +77,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButtonDebito"
             android:layout_width="97dp"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="Débito" />
 
         <RadioButton
@@ -96,6 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="344dp"
+        android:onClick="createFinancialEntry"
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
