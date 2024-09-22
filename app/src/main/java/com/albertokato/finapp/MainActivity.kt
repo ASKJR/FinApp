@@ -26,10 +26,10 @@ class MainActivity : AppCompatActivity() {
         val bundle = intent.extras
         if (intent.hasExtra("financialEntries") && bundle != null) {
             var entries : ArrayList<FinancialEntry>? = null
-            if (Build.VERSION.SDK_INT  >= Build.VERSION_CODES.TIRAMISU) {
-                entries =  bundle.getParcelableArrayList("financialEntries", FinancialEntry::class.java)
+            entries = if (Build.VERSION.SDK_INT  >= Build.VERSION_CODES.TIRAMISU) {
+                bundle.getParcelableArrayList("financialEntries", FinancialEntry::class.java)
             } else {
-                entries =  bundle.getParcelableArrayList("financialEntries")
+                bundle.getParcelableArrayList("financialEntries")
             }
             if (entries != null) {
                 financialEntries = entries

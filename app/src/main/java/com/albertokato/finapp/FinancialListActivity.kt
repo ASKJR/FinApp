@@ -2,12 +2,13 @@ package com.albertokato.finapp
 
 import android.os.Build
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.text.NumberFormat
+import java.util.Locale
 
 class FinancialListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +27,17 @@ class FinancialListActivity : AppCompatActivity() {
         } else {
             bundle?.getParcelableArrayList("financialEntries")
         }
-        val financialEntriesString = financialEntries?.map { "${it.type} - ${it.description} - R$${String.format("%.2f", it.value)}" }?.toTypedArray()
+        val financialEntriesString = financialEntries?.map {
+                val format = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+                val formattedAmount = format.format(it.value)
+                if (it.type == "Crédito") {
+                    "${it.type}: ${it.description} +${formattedAmount}";
+                } else {
+                    "${it.type}: ${it.description} -${formattedAmount}";
+                }
+        }?.toList()
         if (financialEntriesString != null) {
-            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, financialEntriesString)
+            val adapter = CustomAdapter(this, financialEntriesString)
             listView.adapter = adapter
         }
     }
