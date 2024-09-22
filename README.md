@@ -10,6 +10,11 @@ Prof. Dr. Alessandro Brawerman
 
 **Aluno: Alberto Sussumu Kato Junior**
 
+<h1 align="center"> Trabalho da disciplina Desenvolvimento Mobile I </h1>
+
+# GitHub
+https://github.com/ASKJR/FinApp
+
 # Contexto
 Uma FinTech, startup da área de finanças, solicitou que fosse desenvolvido um aplicativo
 simples para Android, que auxiliasse o usuário em sua vida financeira. O aplicativo tem por
